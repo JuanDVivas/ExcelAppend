@@ -11,7 +11,6 @@ except ImportError:
     import tkinter
     from tkinter import ttk
 
-data = pd.DataFrame()
 
 def data_pr():
     path = path_info.get() + '/'
@@ -28,16 +27,19 @@ def data_pr():
 
     def bring_data():
         for counter, fileitem in enumerate(filelist):
-            global data
+            
             temp = pd.read_excel(path + fileitem)
             temp.loc[:,'Origen Data'] = fileitem
-            data = data.append(temp)
+            
+            if counter==0:
+                temp.to_csv(path + 'Archivo Full.csv', index=False)
+            else:
+                temp.to_csv(path + 'Archivo Full.csv', index=False, mode='a', header=False)
+                
             count.set(counter+1)
             formulario.update_idletasks()
             refresh()
             
-        data.to_csv(path + 'Archivo Full.csv', index=False)
-
     bring_data()
 
     messagebox.showinfo('Union de Datos', 'Union de Datos Completada'+ '\n' + 'Archivos Procesados:'+ '\n' + '\n'.join(''.join(file) for file in filelist))

@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['app.py'],
+a = Analysis(['App.py'],
              pathex=['E:\\Documentos\\Pruebas Python\\Edu\\App'],
              binaries=[],
              datas=[],
@@ -23,7 +23,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='app',
+          name='App',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
